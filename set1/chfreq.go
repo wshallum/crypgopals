@@ -22,11 +22,14 @@ func ByteFrequencies(s []byte) map[byte]int {
 // the basis of byte frequencies. The higher the score,
 // the closer it looks to English.
 func ScoreString(s []byte) int {
-	// how to score: we sort the letter frequencies then compare against the english letter frequencies
-	// we then compute sum of difference between the rank of the letter in english and the rank of the
-	// letter in text, then negate it so the closer the ranks are, the higher the score
+	// how to score: we sort the letter frequencies then compare against
+	// the english letter frequencies we then compute sum of difference
+	// between the rank of the letter in english and the rank of the letter
+	// in text, then negate it so the closer the ranks are, the higher the
+	// score
 	//
-	// We then subtract one point for every non letter character
+	// We then subtract one point for every non letter character and 100
+	// points for any non printable character
 	const order = "etaoinsrhdlucmfywgpbvkxqjz"
 	freqs := ByteFrequencies(s)
 	letterFreqs := make(map[byte]byteIntPair, 26)
